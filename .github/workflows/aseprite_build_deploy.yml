@@ -9,6 +9,7 @@ on:
       - master
 
 env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   BUILD_TYPE: Release
   
 jobs:
