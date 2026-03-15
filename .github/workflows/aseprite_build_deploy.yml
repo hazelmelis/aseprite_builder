@@ -109,7 +109,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         working-directory: aseprite/build
         shell: cmd
-        run: cmake -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_IGNORE_PATH='C:/ProgramData/chocolatey/bin/;C:/Strawberry/c/bin/' -DLAF_BACKEND=skia -DSKIA_DIR=${{ github.workspace }}/skia -DSKIA_LIBRARY_DIR=${{ github.workspace }}/skia/out/Release-x64 -DCMAKE_POSITION_INDEPENDENT_CODE=OFF -DCMAKE_RC_FLAGS="" -G Ninja ..
+        run: cmake -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_IGNORE_PATH='C:/ProgramData/chocolatey/bin/;C:/Strawberry/c/bin/' -DLAF_BACKEND=skia -DSKIA_DIR=${{ github.workspace }}/skia -DSKIA_LIBRARY_DIR=${{ github.workspace }}/skia/out/Release-x64 -DCMAKE_POSITION_INDEPENDENT_CODE=OFF "-DCMAKE_RC_COMPILE_OBJECT=<CMAKE_RC_COMPILER> <DEFINES> <INCLUDES> /fo <OBJECT> <SOURCE>" -G Ninja ..
       - name: (Ubuntu) Run CMake
         if: matrix.os == 'ubuntu-latest'
         working-directory: aseprite/build
