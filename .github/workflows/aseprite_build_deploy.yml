@@ -100,6 +100,11 @@ jobs:
       - name: (Windows) Setting Visual Studio build environment variables and paths
         if: matrix.os == 'windows-latest'
         uses: seanmiddleditch/gha-setup-vsdevenv@v1
+      - name: (Windows) Remove -fPIC flag
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          find aseprite -name "CMakeLists.txt" -exec sed -i 's/-fPIC//g' {} \;
       - name: (Windows) Run CMake
         if: matrix.os == 'windows-latest'
         working-directory: aseprite/build
